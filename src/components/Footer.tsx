@@ -8,7 +8,6 @@ import {
   FaInstagram,
   FaYoutube,
   FaTelegram,
-  FaHandsHolding,
   FaHeart,
 } from "react-icons/fa6";
 

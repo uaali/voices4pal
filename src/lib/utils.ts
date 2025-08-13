@@ -1,6 +1,14 @@
 // Utility functions for formatting data from Sanity
 
-export const formatBreakingNews = (news: any[]) => {
+interface BreakingNewsItem {
+  title: string;
+  publishedAt: string;
+  location?: string;
+  excerpt?: string;
+  tickerText?: string;
+}
+
+export const formatBreakingNews = (news: BreakingNewsItem[]): BreakingNewsItem[] => {
   if (!news || news.length === 0) {
     // Fallback breaking news if Sanity is empty
     return [
@@ -27,7 +35,23 @@ export const formatBreakingNews = (news: any[]) => {
   }));
 };
 
-export const formatSearchResults = (results: any[]) => {
+interface SearchResultItem {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  publishedAt: string;
+  postType: string;
+  mainImage?: {
+    asset: {
+      _id: string;
+      url: string;
+    };
+    alt?: string;
+  };
+}
+
+export const formatSearchResults = (results: SearchResultItem[]) => {
   return results.map(result => ({
     ...result,
     formattedDate: new Date(result.publishedAt).toLocaleDateString("en-US", {

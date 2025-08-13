@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { searchPosts } from "@/sanity/lib/queries";
 import { getPostTypeColor, getPostTypeIcon } from "@/lib/utils";
-import { FaSearch, FaCalendar, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { FaSearch, FaCalendar } from "react-icons/fa";
 
 interface SearchResult {
   _id: string;
@@ -23,7 +23,7 @@ interface SearchResult {
   };
 }
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -172,5 +172,17 @@ export default function SearchPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }

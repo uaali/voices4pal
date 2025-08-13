@@ -34,12 +34,13 @@ type InfraItem = {
   educational_buildings?: { destroyed?: number; damaged?: number };
 };
 
-type NameFreq = {
-  man: Record<string, number>;
-  woman: Record<string, number>;
-  boy: Record<string, number>;
-  girl: Record<string, number>;
-};
+// Commented out NameFreq type - available for future use
+// type NameFreq = {
+//   man: Record<string, number>;
+//   woman: Record<string, number>;
+//   boy: Record<string, number>;
+//   girl: Record<string, number>;
+// };
 
 const n = (v?: number) => (typeof v === "number" ? v.toLocaleString() : "—");
 
@@ -54,17 +55,19 @@ async function getJSON<T>(url: string) {
 }
 
 export default async function StoryByNumbers() {
-  const [summary, infra, namefreq] = await Promise.all([
+  const [summary, infra] = await Promise.all([
     getJSON<Summary>(
       "https://data.techforpalestine.org/api/v3/summary.min.json"
     ),
     getJSON<InfraItem[]>(
       "https://data.techforpalestine.org/api/v3/infrastructure-damaged.min.json"
     ),
-    getJSON<NameFreq>(
-      "https://data.techforpalestine.org/api/v2/killed-in-gaza/name-freq-en.json"
-    ),
   ]);
+  
+  // Commented out namefreq data - available for future use
+  // const namefreq = await getJSON<NameFreq>(
+  //   "https://data.techforpalestine.org/api/v2/killed-in-gaza/name-freq-en.json"
+  // );
 
   const latestInfra =
     Array.isArray(infra) && infra.length > 0
@@ -72,12 +75,13 @@ export default async function StoryByNumbers() {
       : undefined;
   const lastUpdate = summary?.gaza?.last_update;
 
-  const topChildNames = Object.entries({
-    ...(namefreq?.girl || {}),
-    ...(namefreq?.boy || {}),
-  })
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 10);
+  // Top child names data (available for future use)
+  // const topChildNames = Object.entries({
+  //   ...(namefreq?.girl || {}),
+  //   ...(namefreq?.boy || {}),
+  // })
+  //   .sort((a, b) => b[1] - a[1])
+  //   .slice(0, 10);
 
   return (
     <section className="border-y border-red-800/30 bg-black/60">
