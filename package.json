@@ -1,7 +1,33 @@
 {
   "name": "voices4pal",
   "version": "0.1.0",
-  "private": true,
+  "description": "Amplifying Palestinian voices, sharing untold stories, and fighting for justice",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "name": "Voices for Palestine Contributors",
+    "url": "https://github.com/uaali/voices4pal"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uaali/voices4pal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uaali/voices4pal/issues"
+  },
+  "homepage": "https://voices4palestine.org",
+  "keywords": [
+    "palestine",
+    "gaza",
+    "human-rights",
+    "journalism",
+    "nextjs",
+    "typescript",
+    "sanity",
+    "open-source",
+    "advocacy",
+    "stories"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

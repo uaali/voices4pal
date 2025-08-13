@@ -126,6 +126,15 @@ const Footer = () => {
                   {link.name}
                 </Link>
               ))}
+              {/* Developers link (external) */}
+              <a
+                href="https://github.com/uaali/voices4pal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-300 hover:text-white transition-colors text-sm px-3 py-2 bg-zinc-900 rounded hover:bg-zinc-800"
+              >
+                Developers
+              </a>
             </div>
           </div>
 
